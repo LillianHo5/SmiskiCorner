@@ -28,16 +28,11 @@ const CreatePost = () => {
 
     return (
         <div>
-            <form>
+            <form className='create-post'>
                 <label htmlFor="title">Title</label> <br />
-                <input type="text" id="title" value={post.title} onChange={handleChange} name="title" /><br />
+                <input className='create-input' type="text" id="title" value={post.title} onChange={handleChange} name="title" /><br />
                 <br />
-
-                <label htmlFor="author">Author</label><br />
-                <input type="text" id="author" value={post.author} onChange={handleChange} name="author" /><br />
-                <br />
-
-                <label htmlFor="description">Description</label><br />
+                <label className='create-input' htmlFor="description">Description</label><br />
                 <textarea rows="5" cols="50" value={post.description} onChange={handleChange} name="description">
                 </textarea>
                 <br />

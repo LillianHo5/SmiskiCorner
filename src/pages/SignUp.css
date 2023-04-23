@@ -1,13 +1,15 @@
-form {
+.signup-form {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     background: #747bff;
     padding: 3rem 8rem;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
 }
 
-input {
+.signup-input {
     margin: 1rem 0rem;
     padding: 0.5rem;
     border-radius: 0.5rem;

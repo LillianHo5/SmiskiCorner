@@ -1,11 +1,11 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
-import {Navigate, useRoutes} from 'react-router-dom';
+import {useRoutes} from 'react-router-dom';
 import NavBar from './routes/NavBar';
-import { supabase } from './client';
 import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import HomeFeed from "./pages/HomeFeed.jsx";
+import CreatePost from "./pages/CreatePost.jsx";
 
 
 const App = () => {
@@ -37,6 +37,10 @@ const App = () => {
         {
             path: "/home",
             element: token ? <HomeFeed token={token} /> : <Login setToken={setToken} />
+        },
+        {
+            path: "/new",
+            element: <CreatePost />
         }
     ]);
 

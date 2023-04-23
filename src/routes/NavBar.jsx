@@ -4,7 +4,7 @@ import './NavBar.css'
 const NavBar = () => {
     const location = useLocation();
 
-    if (location.pathname === '/signup') {
+    if (location.pathname === '/signup' || location.pathname === '/') {
         return null; // don't render the navbar on the signup page
     }
 
@@ -12,9 +12,8 @@ const NavBar = () => {
         <div>
             <nav>
                 <div className="navbar">
-                    <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/"><h4>Home</h4></Link>
-                    <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/new"><h4>Create a Crewmate</h4></Link>
-                    <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/gallery"><h4>Crewmate Gallery</h4></Link>
+                    <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/home"><h4>Home</h4></Link>
+                    <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/new"><h4>Create a Post</h4></Link>
                     <Link className="links" style={{color: "rgba(255, 255, 255, 0.87)" }} to="/profile"><h4>Profile</h4></Link>
                 </div>
             </nav>

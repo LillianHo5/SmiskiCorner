@@ -50,29 +50,34 @@ const SignUp = () => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className="signup-form" onSubmit={handleSubmit}>
                 <input
+                    className="signup-input"
                     placeholder='Name'
                     name='fullName'
                     onChange={handleChange}
                 />
                 <input
+                    className="signup-input"
                     placeholder='Username'
                     name='username'
                     onChange={handleChange}
                 />
                 <input
+                    className="signup-input"
                     placeholder='Email'
                     name='email'
                     onChange={handleChange}
                 />
                 <input
+                    className="signup-input"
                     placeholder='Password'
                     name='password'
                     type="password"
                     onChange={handleChange}
                 />
                 <input
+                    className="signup-input"
                     placeholder='Confirm Password'
                     name='confirm_password'
                     type="password"

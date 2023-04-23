@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {Link, useNavigate } from "react-router-dom";
+import './Login.css'
 import {supabase} from "../client.js";
 
 const Login = ({ setToken }) => {
@@ -41,13 +42,15 @@ const Login = ({ setToken }) => {
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form className="login-form" onSubmit={handleSubmit}>
                 <input
+                    className="login-input"
                     placeholder='Email'
                     name='email'
                     onChange={handleChange}
                 />
                 <input
+                    className="login-input"
                     placeholder='Password'
                     name='password'
                     type="password"
