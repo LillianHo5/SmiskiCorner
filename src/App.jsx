@@ -6,11 +6,27 @@ import SignUp from './pages/SignUp.jsx'
 import Login from './pages/Login.jsx'
 import HomeFeed from "./pages/HomeFeed.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
+import Profile from "./pages/ProfilePage.jsx";
+import {supabase} from "./client.js";
 
 
 const App = () => {
+    const [posts, setPosts] = useState([]);
+    const [token, setToken] = useState(false);
 
-    const [token, setToken] = useState(false)
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const { data } = await supabase
+                .from('Posts')
+                .select()
+            //.order('created_at', { ascending: true })
+
+            // set state of posts
+            setPosts(data);
+        }
+
+        fetchPosts();
+    }, []);
 
     if(token){
         sessionStorage.setItem('token',JSON.stringify(token))
@@ -36,18 +52,22 @@ const App = () => {
         },
         {
             path: "/home",
-            element: token ? <HomeFeed token={token} /> : <Login setToken={setToken} />
+            element: token ? <HomeFeed token={token} data={posts}  /> : <Login setToken={setToken} />
         },
         {
             path: "/new",
-            element: <CreatePost />
+            element: <CreatePost token={token} />
+        },
+        {
+            path: "/profile",
+            element: <Profile />
         }
     ]);
 
       return (
           <div className="App">
             <div className="container">
-              <NavBar />
+              <NavBar token={token} />
               <div className="content">
                 {element}
               </div>

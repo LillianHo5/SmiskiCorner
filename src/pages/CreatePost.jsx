@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { supabase } from '../client'
 import './CreatePost.css'
 
-const CreatePost = () => {
+const CreatePost = ({ token }) => {
     const [post, setPost] = useState({ title: "", author: "", description: "" });
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -19,10 +19,12 @@ const CreatePost = () => {
 
         await supabase
             .from('Posts')
-            .insert({ title: post.title, author: post.author, description: post.description })
+            .insert({ title: post.title,
+                author: token.user.user_metadata.username,
+                description: post.description })
             .select();
 
-        window.location = "/";
+        window.location = "/home";
     }
 
 
