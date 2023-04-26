@@ -8,6 +8,7 @@ import HomeFeed from "./pages/HomeFeed.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
 import Profile from "./pages/ProfilePage.jsx";
 import {supabase} from "./client.js";
+import PostDetail from "./components/PostDetail.jsx";
 
 
 const App = () => {
@@ -61,6 +62,10 @@ const App = () => {
         {
             path: "/profile",
             element: <Profile />
+        },
+        {
+            path: "/post/:id",
+            element: <PostDetail />
         }
     ]);
 
