@@ -38,7 +38,7 @@ const EditPost = ({ data }) => {
     }
 
     return (
-        <div>
+        <div className="edit-container">
             <form>
                 <label htmlFor="title">Title</label> <br />
                 <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />

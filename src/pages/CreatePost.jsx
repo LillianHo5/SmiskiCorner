@@ -3,7 +3,7 @@ import { supabase } from '../client'
 import './CreatePost.css'
 
 const CreatePost = ({ token }) => {
-    const [post, setPost] = useState({ title: "", author: "", description: "" });
+    const [post, setPost] = useState({ title: "", author: "", user_id: "", description: "" });
     const handleChange = (event) => {
         const { name, value } = event.target;
 
@@ -21,6 +21,7 @@ const CreatePost = ({ token }) => {
             .from('Posts')
             .insert({ title: post.title,
                 author: token.user.user_metadata.username,
+                user_id: token.user.id,
                 description: post.description })
             .select();
 

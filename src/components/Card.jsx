@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom'
 
 const Card = (props) => {
     const [count, setCount] = useState(props.like_count);
+    const showEditButton = props.token.user.id == props.user_id;
 
     useEffect(() => {
         if (props.like_count !== count) {
@@ -29,7 +30,7 @@ const Card = (props) => {
         <div className="Card">
             <div className="header-container">
                 <h1 className="title">{props.title.length >= 20 ? props.title.substring(0, 19) + "..." : props.title}</h1>
-                <Link to={'/edit/' + props.id}><img className="editButton" alt="edit button" src={edit} /></Link>
+                {showEditButton && <Link to={`/edit/${props.id}`}><img className="editButton" alt="edit button" src={edit} /></Link>}
             </div>
             <h4 className="author">{"by " + props.author}</h4>
             <p className="description">{props.description}</p>

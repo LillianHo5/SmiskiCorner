@@ -113,6 +113,8 @@ const HomeFeed = ({ token, data }) => {
                                   author={post.author}
                                   description={post.description}
                                   like_count={post.like_count}
+                                  user_id={post.user_id}
+                                  token={token}
                             />
                         </div>
                     )
@@ -125,6 +127,8 @@ const HomeFeed = ({ token, data }) => {
                                       author={post.author}
                                       description={post.description}
                                       like_count={post.like_count}
+                                      user_id={post.user_id}
+                                      token={token}
                                 />
                             </div>
                         )
@@ -137,6 +141,8 @@ const HomeFeed = ({ token, data }) => {
                                           author={post.author}
                                           description={post.description}
                                           like_count={post.like_count}
+                                          user_id={post.user_id}
+                                          token={token}
                                     />
                                 </div>
                             )
