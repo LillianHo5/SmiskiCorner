@@ -44,7 +44,7 @@ const EditPost = ({ data }) => {
                 <input type="text" id="title" name="title" value={post.title} onChange={handleChange} /><br />
                 <br />
 
-                <label htmlFor="description">Description</label><br />
+                <label htmlFor="description">Description</label> <br />
                 <textarea rows="5" cols="50" id="description" name="description" value={post.description} onChange={handleChange} >
                 </textarea>
                 <br />

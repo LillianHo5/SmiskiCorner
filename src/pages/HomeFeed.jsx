@@ -113,6 +113,7 @@ const HomeFeed = ({ token, data }) => {
                                   author={post.author}
                                   description={post.description}
                                   like_count={post.like_count}
+                                  comment_count={post.comment_count}
                                   user_id={post.user_id}
                                   token={token}
                             />
@@ -127,6 +128,7 @@ const HomeFeed = ({ token, data }) => {
                                       author={post.author}
                                       description={post.description}
                                       like_count={post.like_count}
+                                      comment_count={post.comment_count}
                                       user_id={post.user_id}
                                       token={token}
                                 />
@@ -141,6 +143,7 @@ const HomeFeed = ({ token, data }) => {
                                           author={post.author}
                                           description={post.description}
                                           like_count={post.like_count}
+                                          comment_count={post.comment_count}
                                           user_id={post.user_id}
                                           token={token}
                                     />

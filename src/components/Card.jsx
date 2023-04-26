@@ -6,24 +6,41 @@ import { supabase } from '../client'
 import { Link } from 'react-router-dom'
 
 const Card = (props) => {
-    const [count, setCount] = useState(props.like_count);
+    const [likeCount, setLikeCount] = useState(props.like_count);
+    const [commentCount, setCommentCount] = useState(props.like_count);
     const showEditButton = props.token.user.id == props.user_id;
 
     useEffect(() => {
-        if (props.like_count !== count) {
-            setCount(props.like_count);
+        if (props.like_count !== likeCount) {
+            setLikeCount(props.like_count);
+        }
+        if (props.comment_count !== commentCount) {
+            setCommentCount(props.comment_count);
         }
     }, [props]);
-    const updateCount = async (event) => {
+
+    const updateLikeCount = async (event) => {
         event.preventDefault();
         // Update in Supabase
         await supabase
             .from('Posts')
-            .update({ like_count: count + 1 })
+            .update({ like_count: likeCount + 1 })
             .eq('id', props.id)
 
         // Update State Variable
-        setCount((count) => count + 1);
+        setLikeCount((likeCount) => likeCount + 1);
+    }
+
+    const updateCommentCount = async (event) => {
+        event.preventDefault();
+        // Update in Supabase
+        await supabase
+            .from('Posts')
+            .update({ comment_count: commentCount + 1 })
+            .eq('id', props.id)
+
+        // Update State Variable
+        setCommentCount((commentCount) => commentCount + 1);
     }
 
     return (
@@ -34,7 +51,8 @@ const Card = (props) => {
             </div>
             <h4 className="author">{"by " + props.author}</h4>
             <p className="description">{props.description}</p>
-            <button className="likeButton" onClick={updateCount} >Likes: {count}</button>
+            <button className="likeButton" onClick={updateLikeCount} >Likes: {likeCount}</button>
+            <button className="likeButton" onClick={updateCommentCount} >Comments: {commentCount}</button>
         </div>
     );
 };
