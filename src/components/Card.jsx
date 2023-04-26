@@ -5,8 +5,7 @@ import { supabase } from '../client'
 import { Link } from 'react-router-dom'
 
 const Card = (props) => {
-
-    const [count, setCount] = useState(0)
+    const [count, setCount] = useState(props.like_count);
     const updateCount = async (event) => {
         event.preventDefault();
         // Update in Supabase
@@ -21,8 +20,10 @@ const Card = (props) => {
 
     return (
         <div className="Card">
-            <h2 className="title">{props.title}</h2>
-            <h3 className="author">{"by " + props.author}</h3>
+            <div className="header-info">
+                <h2 className="title">{props.title}</h2>
+                <h3 className="author">{"by " + props.author}</h3>
+            </div>
             <p className="description">{props.description}</p>
             <button className="betButton" onClick={updateCount} >Likes: {count}</button>
         </div>

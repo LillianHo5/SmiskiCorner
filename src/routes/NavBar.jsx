@@ -25,7 +25,7 @@ const NavBar = ({ token }) => {
                     <button onClick={handleLogout}>Logout</button>
                 </div>
             </nav>
-            <div class="content">
+            <div className="content">
                 <Outlet />
             </div>
         </div>

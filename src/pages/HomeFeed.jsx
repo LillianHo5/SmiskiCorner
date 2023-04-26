@@ -1,11 +1,15 @@
 import React, {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import Card from "../components/Card.jsx";
+import "./HomeFeed.css"
 
 const HomeFeed = ({ token, data }) => {
     let navigate = useNavigate();
 
     const [posts, setPosts] = useState([]);
+    const [sortedPosts, setSortedPosts] = useState([]);
+
+    console.log(posts)
 
     useEffect(() => {
         setPosts(data);
@@ -15,18 +19,66 @@ const HomeFeed = ({ token, data }) => {
         navigate('/new');
     }
 
+    function handleLikedFilter() {
+        const sortedList = [...posts];
+        if (sortedList.length > 0) {
+            sortedList.sort(function(a, b) {
+                return b.like_count - a.like_count;
+            })
+        }
+
+        setSortedPosts(sortedList);
+    }
+
+    function handleRecentFilter() {
+        const sortedList = [...posts];
+        if (sortedList.length > 0) {
+            sortedList.sort(function(a, b) {
+                return new Date(b.created_at) - new Date(a.created_at);
+            })
+        }
+
+        setSortedPosts(sortedList);
+    }
+
+    function handleCardClick(id) {
+        navigate(`/post/${id}`)
+    }
+
     return (
         <div>
-            <h3>Welcome back, {token.user.user_metadata.full_name}</h3>
-            <div>
-                <h3>Filter By:</h3>
+            <h2>Welcome back, {token.user.user_metadata.full_name}</h2>
+            <div className="Sort">
+                <h3>Sort By:</h3>
+                <button onClick={handleLikedFilter}>Most Liked</button>
+                <button onClick={handleRecentFilter}>Most Recent</button>
             </div>
             <div className="ReadPosts">
-                {
-                    posts && posts.length > 0 ?
+                { sortedPosts.length > 0 ?
+                    (posts && posts.length > 0 ?
+                        sortedPosts.map((post, index) =>
+                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id)}>
+                                <Card key={post.id}
+                                      id={post.id}
+                                      title={post.title}
+                                      author={post.author}
+                                      description={post.description}
+                                      like_count={post.like_count}
+                                />
+                            </div>
+                        ) : <h2>{'No posts yet.'}</h2>)
+                    :
+                    (posts && posts.length > 0 ?
                         posts.map((post, index) =>
-                            <Card id={post.id} title={post.title} author={post.author} description={post.description}/>
-                        ) : <h2>{'No posts yet.'}</h2>
+                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id)}>
+                                <Card key={post.id}
+                                      id={post.id}
+                                      title={post.title}
+                                      author={post.author}
+                                      description={post.description}
+                                      like_count={post.like_count} />
+                            </div>
+                        ) : <h2>{'No posts yet.'}</h2>)
                 }
             </div>
             <button className="new-post" onClick={handleCreatePost}> + </button>

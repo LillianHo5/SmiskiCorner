@@ -3,3 +3,15 @@
     bottom: 20px !important;
     right: 20px !important;
 }
+
+.Sort {
+    margin-bottom: 1rem;
+}
+
+.Sort button {
+    margin: 0rem 1rem;
+}
+
+.card-styling:hover {
+    cursor: pointer;
+}
