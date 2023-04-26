@@ -5,11 +5,30 @@
 }
 
 .Sort {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin-bottom: 1rem;
 }
 
-.Sort button {
+.Filter {
+    margin-bottom: 1rem;
+}
+
+input {
+    width: 20vw;
+}
+
+button {
     margin: 0rem 1rem;
+    padding: 0rem;
+    height: fit-content;
+}
+
+button:hover {
+    background: #888888;
+    color: #f9f9f9;
 }
 
 .card-styling:hover {
