@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 import {supabase} from "../client.js";
 import "./PostDetail.css"
 
 const PostDetail = () => {
     const params = useParams();
     let [post, setPost] = useState(null);
-    const [count, setCount] = useState(post ? post.like_count : null);
+    //const [count, setCount] = useState(post ? post.like_count : null);
+    const [likeCount, setLikeCount] = useState(post ? post.like_count : null);
+    const [commentCount, setCommentCount] = useState(post ? post.comment_count : null);
     const [formattedDate, setFormattedDate] = useState("");
 
     // Time posted calculations (after post is retrieved)
@@ -34,22 +36,30 @@ const PostDetail = () => {
         }
     }, [post]);
 
+    // Update like count and comment count to match Supabase table
     useEffect(() => {
-        if (post && post.like_count !== count) {
-            setCount(post.like_count);
+        if (post && post.like_count !== likeCount) {
+            setLikeCount(post.like_count);
+        }
+        if (post && post.comment_count !== commentCount) {
+            setCommentCount(post.comment_count)
         }
     }, [post]);
+
     const updateCount = async (event) => {
         event.preventDefault();
         // Update in Supabase
         await supabase
             .from('Posts')
-            .update({ like_count: count + 1 })
+            .update({ like_count: likeCount + 1 })
             .eq('id', post.id)
 
-        // Update State Variable
-        setCount((count) => count + 1);
+        // Update State Variables
+        const updatedPost = { ...post, like_count: likeCount + 1 };
+        setPost(updatedPost);
+        setLikeCount((likeCount) => likeCount + 1);
     }
+
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -78,7 +88,8 @@ const PostDetail = () => {
                     <h3><strong>Posted by: </strong>{post.author}</h3>
                     <h4 className="detailed-description">{post.description}</h4>
                     <p><strong>Posted: </strong>{formattedDate}</p>
-                    <button className="like-btn" onClick={updateCount}>Likes: {count}</button>
+                    <button className="detail-btn" onClick={updateCount}>Likes: {likeCount}</button>
+                    <Link to={`/comments/${post.id}`}><button className="detail-btn" >Comments: {commentCount}</button></Link>
                 </div>
             ) : null}
         </div>

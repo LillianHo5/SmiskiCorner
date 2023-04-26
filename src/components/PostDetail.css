@@ -1,7 +1,7 @@
 .post-container {
     background: #C7E9B0;
-    padding: 2rem 5rem 2rem 5rem;
     border-radius: 0.5rem;
+    padding: 4rem 10rem;
     text-align: start;
 }
 
@@ -13,7 +13,20 @@
     color: #242424;
 }
 
-.like-btn { 
-    background: #f9f9f9;
-    color: #242424;
+
+.detail-btn {
+    border-radius: 8px;
+    border: 1px solid transparent;
+    padding: 0.6em 1.2em;
+    font-size: 15px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #e9ece6;
+    color: #A4BC92;
+    cursor: pointer;
+    transition: border-color 0.25s;
+}
+
+.detail-btn:hover {
+    border-color: #646cff;
 }

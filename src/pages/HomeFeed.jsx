@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from 'react';
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 import Card from "../components/Card.jsx";
 import "./HomeFeed.css"
 
 const HomeFeed = ({ token, data }) => {
     let navigate = useNavigate();
-
     const [posts, setPosts] = useState([]);
     const [sortedPosts, setSortedPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
@@ -13,11 +12,9 @@ const HomeFeed = ({ token, data }) => {
     const [mostLikedDisabled, setMostLikedDisabled] = useState(false);
     const [mostRecentDisabled, setMostRecentDisabled] = useState(true);
 
-    console.log(posts)
-
      useEffect(() => {
          setPosts(data);
-    }, data);
+    }, [data]);
 
     function handleCreatePost() {
         navigate('/new');

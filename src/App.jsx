@@ -10,6 +10,7 @@ import CreatePost from "./pages/CreatePost.jsx";
 import Profile from "./pages/ProfilePage.jsx";
 import PostDetail from "./components/PostDetail.jsx";
 import EditPost from "./pages/EditPost.jsx";
+import CommentsDetail from "./components/CommentsDetail.jsx"
 
 
 const App = () => {
@@ -71,6 +72,10 @@ const App = () => {
         {
             path: "/edit/:id",
             element: <EditPost data={posts} />
+        },
+        {
+            path: "/comments/:id",
+            element: <CommentsDetail data={posts} />
         }
     ]);
 
