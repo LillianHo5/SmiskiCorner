@@ -14,22 +14,29 @@
 
 .title {
     color:white;
-    font-size: 24px;
+    font-size: 28px;
+    margin-left: 1rem;
+    margin-right: 0rem;
+}
+
+.header-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 .author {
     color:white;
-    margin-bottom: 20px;
     font-size: 20px;
-    text-align: center;
+    text-align: justify;
+    text-justify: inter-word;
+    padding-left: 30px;
+    margin-bottom: 20px;
 }
 
-.header-info {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-}
 
 .description {
     color:white;
@@ -41,27 +48,29 @@
     font-size: 15px;
 }
 
-.betButton {
+.likeButton {
     border-radius: 8px;
     border: 1px solid transparent;
     padding: 0.6em 1.2em;
     font-size: 15px;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
-    color:white;
+    background-color: white;
+    color: black;
     cursor: pointer;
     transition: border-color 0.25s;
 }
-.betButton:hover {
+
+.likeButton:hover {
     border-color: #646cff;
 }
 
-.moreButton {
+.editButton {
     width: 30px;
     float:right;
-
+    text-align: end;
+    filter: brightness(100%);
 }
-.moreButton:hover {
+.editButton:hover {
     cursor: pointer;
 }

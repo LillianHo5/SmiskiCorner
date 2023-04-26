@@ -1,5 +1,6 @@
 import './App.css';
 import React, {useEffect, useState} from 'react';
+import {supabase} from "./client.js";
 import {useRoutes} from 'react-router-dom';
 import NavBar from './routes/NavBar';
 import SignUp from './pages/SignUp.jsx'
@@ -7,8 +8,8 @@ import Login from './pages/Login.jsx'
 import HomeFeed from "./pages/HomeFeed.jsx";
 import CreatePost from "./pages/CreatePost.jsx";
 import Profile from "./pages/ProfilePage.jsx";
-import {supabase} from "./client.js";
 import PostDetail from "./components/PostDetail.jsx";
+import EditPost from "./pages/EditPost.jsx";
 
 
 const App = () => {
@@ -66,6 +67,10 @@ const App = () => {
         {
             path: "/post/:id",
             element: <PostDetail data={posts} />
+        },
+        {
+            path: "/edit/:id",
+            element: <EditPost data={posts} />
         }
     ]);
 

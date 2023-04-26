@@ -67,7 +67,7 @@ const HomeFeed = ({ token, data }) => {
 
     function handleCardClick(id, count, event) {
         // Check if the clicked element is the button inside the card
-        if (event.target.tagName === 'BUTTON') {
+        if (event.target.tagName === 'BUTTON' || event.target.tagName === 'IMG') {
             return;
         }
         navigate(`/post/${id}`)
@@ -77,9 +77,9 @@ const HomeFeed = ({ token, data }) => {
         setSearchInput(searchValue);
         if (searchValue !== "") {
             const filteredPosts = posts.filter((post) =>
-                post.title.toLowerCase().includes(searchValue.toLowerCase()) ||
-                post.description.toLowerCase().includes(searchValue.toLowerCase()) ||
-                post.author.toLowerCase().includes(searchValue.toLowerCase())
+                post.title.toLowerCase().includes(searchValue.toLowerCase())
+                //post.description.toLowerCase().includes(searchValue.toLowerCase()) ||
+                //post.author.toLowerCase().includes(searchValue.toLowerCase())
             );
             setFilteredPosts(filteredPosts);
         } else {
@@ -94,7 +94,7 @@ const HomeFeed = ({ token, data }) => {
                 <input
                     className='text-search'
                     type="text"
-                    placeholder="Search a keyword or user!"
+                    placeholder="Search for a post title!"
                     onChange={(inputString) => searchItems(inputString.target.value)}
                 />
             </div>

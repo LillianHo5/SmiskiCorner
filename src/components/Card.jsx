@@ -1,6 +1,7 @@
 import React, {useEffect} from 'react'
 import { useState } from 'react'
 import './Card.css'
+import edit from '../assets/editButton.png'
 import { supabase } from '../client'
 import { Link } from 'react-router-dom'
 
@@ -26,12 +27,13 @@ const Card = (props) => {
 
     return (
         <div className="Card">
-            <div className="header-info">
-                <h2 className="title">{props.title}</h2>
-                <h3 className="author">{"by " + props.author}</h3>
+            <div className="header-container">
+                <h1 className="title">{props.title.length >= 20 ? props.title.substring(0, 19) + "..." : props.title}</h1>
+                <Link to={'/edit/' + props.id}><img className="editButton" alt="edit button" src={edit} /></Link>
             </div>
+            <h4 className="author">{"by " + props.author}</h4>
             <p className="description">{props.description}</p>
-            <button className="betButton" onClick={updateCount} >Likes: {count}</button>
+            <button className="likeButton" onClick={updateCount} >Likes: {count}</button>
         </div>
     );
 };
