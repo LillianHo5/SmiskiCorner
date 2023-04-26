@@ -3,7 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #747bff;
+    background: #A4BC92;
     padding: 3rem 8rem;
     border-radius: 1rem;
     margin-bottom: 1rem;
@@ -11,6 +11,16 @@
 
 .login-input {
     margin: 1rem 0rem;
-    padding: 0.5rem;
     border-radius: 0.5rem;
+}
+
+.login-button {
+    color: #B3C99C
+}
+
+.smiski-cheer {
+    position: fixed !important;
+    width: 200px;
+    bottom: 20px !important;
+    right: 20px !important;
 }

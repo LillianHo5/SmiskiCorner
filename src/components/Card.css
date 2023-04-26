@@ -1,7 +1,6 @@
 .Card {
     backdrop-filter: blur(2px);
-    background: #1a1a1a;
-    border: 1px solid rgba(153, 153, 153, 0.497);
+    background: #B3C99C;
     border-radius: 20px;
     padding-top: 20px;
     padding-bottom: 20px;
@@ -55,8 +54,8 @@
     font-size: 15px;
     font-weight: 500;
     font-family: inherit;
-    background-color: white;
-    color: black;
+    background-color: #dee6d8;
+    color: #A4BC92;
     cursor: pointer;
     transition: border-color 0.25s;
 }

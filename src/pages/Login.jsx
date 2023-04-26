@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import {Link, useNavigate } from "react-router-dom";
 import './Login.css'
+import cheer from '../assets/smiski-cheer.png'
 import {supabase} from "../client.js";
 
 const Login = ({ setToken }) => {
@@ -56,11 +57,12 @@ const Login = ({ setToken }) => {
                     type="password"
                     onChange={handleChange}
                 />
-                <button type='submit'>
+                <button className="login-btn" type='submit'>
                     Login
                 </button>
             </form>
             Don't have an account? <Link to="/signup">Sign Up!</Link>
+            <img className="smiski-cheer" src={cheer}/>
         </div>
     )
 }
