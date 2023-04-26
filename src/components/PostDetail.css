@@ -1,0 +1,19 @@
+.post-container {
+    background: #C7E9B0;
+    padding: 2rem 5rem 2rem 5rem;
+    border-radius: 0.5rem;
+    text-align: start;
+}
+
+.detailed-description {
+    margin-top: 2rem;
+    background: #DDFFBB;
+    padding: 5rem 10rem;
+    border-radius: 0.2rem;
+    color: #242424;
+}
+
+.like-btn { 
+    background: #f9f9f9;
+    color: #242424;
+}

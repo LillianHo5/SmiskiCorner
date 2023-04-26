@@ -41,7 +41,12 @@ const HomeFeed = ({ token, data }) => {
         setSortedPosts(sortedList);
     }
 
-    function handleCardClick(id) {
+    function handleCardClick(id, count, event) {
+        console.log("HEREEE")
+        // Check if the clicked element is the button inside the card
+        if (event.target.tagName === 'BUTTON') {
+            return;
+        }
         navigate(`/post/${id}`)
     }
 
@@ -57,7 +62,7 @@ const HomeFeed = ({ token, data }) => {
                 { sortedPosts.length > 0 ?
                     (posts && posts.length > 0 ?
                         sortedPosts.map((post, index) =>
-                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id)}>
+                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id, post.like_count, event)}>
                                 <Card key={post.id}
                                       id={post.id}
                                       title={post.title}
@@ -70,7 +75,7 @@ const HomeFeed = ({ token, data }) => {
                     :
                     (posts && posts.length > 0 ?
                         posts.map((post, index) =>
-                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id)}>
+                            <div className="card-styling" key={post.id} onClick={() => handleCardClick(post.id, post.like_count, event)}>
                                 <Card key={post.id}
                                       id={post.id}
                                       title={post.title}

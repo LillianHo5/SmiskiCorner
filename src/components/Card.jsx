@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import { useState } from 'react'
 import './Card.css'
 import { supabase } from '../client'
@@ -6,6 +6,12 @@ import { Link } from 'react-router-dom'
 
 const Card = (props) => {
     const [count, setCount] = useState(props.like_count);
+
+    useEffect(() => {
+        if (props.like_count !== count) {
+            setCount(props.like_count);
+        }
+    }, [props]);
     const updateCount = async (event) => {
         event.preventDefault();
         // Update in Supabase

@@ -65,7 +65,7 @@ const App = () => {
         },
         {
             path: "/post/:id",
-            element: <PostDetail />
+            element: <PostDetail data={posts} />
         }
     ]);
 
