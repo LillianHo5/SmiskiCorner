@@ -10,21 +10,21 @@ Time spent: **4** hours spent in total
 
 The following **required** functionality is completed:
 
-- [ ] **A create form that allows the user to create posts**
+- [x] **A create form that allows the user to create posts**
 - [ ] **Posts have a title and optionally additional textual content and/or an image added as an external image URL**
-- [ ] **A home feed displaying previously created posts**
+- [x] **A home feed displaying previously created posts**
 - [ ] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
-- [ ] **Clicking on a post shall direct the user to a new page for the selected post**
-- [ ] **Users can sort posts by either their created time or upvotes count**
-- [ ] **Users can search for posts by title**
-- [ ] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
+- [x] **Clicking on a post shall direct the user to a new page for the selected post**
+- [x] **Users can sort posts by either their created time or upvotes count**
+- [x] **Users can search for posts by title**
+- [x] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
 - [ ] **Users can leave comments underneath a post on the post's separate page**
-- [ ] **Each post should have an upvote button on the post's page. Each click increases its upvotes count by one and users can upvote any number of times**
-- [ ] **A previously created post can be edited or deleted from its post page**
+- [x] **Each post should have an upvote button on the post's page. Each click increases its upvotes count by one and users can upvote any number of times**
+- [x] **A previously created post can be edited or deleted from its post page**
 
 The following **optional** features are implemented:
 
-- [ ] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation
+- [x] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation (Instead of a secret key, user authentication is implemented so that only the creator can access the edit/delete functionality for a post)
 - [ ] Upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them.
 - [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post, the referenced post is displayed and linked, creating a thread
 - [ ] Users can customize the interface of the web app
@@ -57,7 +57,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright 2023 Lillian Ho
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
