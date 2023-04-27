@@ -4,7 +4,7 @@ Submitted by: **Lillian Ho**
 
 This web app: **This web app is a platform for Smiski enjoyers to communicate with other collectors! Collectors can put up trade posts, discuss new releases, etc.**
 
-Time spent: **4** hours spent in total
+Time spent: **14** hours spent in total
 
 ## Required Features
 
