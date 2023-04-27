@@ -1,4 +1,4 @@
-# Web Development Final Project - *SmiskiCentral*
+# Web Development Final Project - *SmiskiCorner*
 
 Submitted by: **Lillian Ho**
 
