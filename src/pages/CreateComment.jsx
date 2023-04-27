@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { supabase } from '../client'
 import '../pages/CreatePost.css'
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 
 const CreateComment = ({ data, token }) => {
+    let navigate = useNavigate();
     const { id } = useParams();
     const [comment, setComment]
         = useState({ title: "", author: "", user_id: "", description: "", post_id: "" });
@@ -43,7 +44,8 @@ const CreateComment = ({ data, token }) => {
 
         setCommentCount(commentCount + 1);
 
-        window.location = "/home";
+        // window.location = "/home";
+        navigate("/home");
     }
 
 

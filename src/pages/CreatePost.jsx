@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { supabase } from '../client'
 import './CreatePost.css'
+import {useNavigate} from "react-router-dom";
 
 const CreatePost = ({ token }) => {
+    let navigate = useNavigate();
     const [post, setPost] = useState({ title: "", author: "", user_id: "", description: "" });
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -25,7 +27,8 @@ const CreatePost = ({ token }) => {
                 description: post.description })
             .select();
 
-        window.location = "/home";
+        //window.location = "/home";
+        navigate("/home");
     }
 
 
