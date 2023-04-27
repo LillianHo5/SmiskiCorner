@@ -1,0 +1,10 @@
+.comment-icon {
+    width: 30px !important;
+    float: right;
+}
+
+.new-comment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

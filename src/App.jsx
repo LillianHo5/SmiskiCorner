@@ -11,11 +11,13 @@ import Profile from "./pages/ProfilePage.jsx";
 import PostDetail from "./components/PostDetail.jsx";
 import EditPost from "./pages/EditPost.jsx";
 import CommentsDetail from "./components/CommentsDetail.jsx"
+import CreateComment from "./pages/CreateComment.jsx";
 
 
 const App = () => {
     const [posts, setPosts] = useState([]);
     const [token, setToken] = useState(false);
+    const [comments, setComments] = useState([]);
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -28,7 +30,16 @@ const App = () => {
             setPosts(data);
         }
 
+        const fetchComments = async () => {
+            const { data } = await supabase
+                .from('Comments')
+                .select()
+
+            setComments(data);
+        }
+
         fetchPosts();
+        fetchComments();
     }, []);
 
     if(token){
@@ -75,7 +86,11 @@ const App = () => {
         },
         {
             path: "/comments/:id",
-            element: <CommentsDetail data={posts} />
+            element: <CommentsDetail coms={comments} token={token} />
+        },
+        {
+            path: "/newComment/:id",
+            element: <CreateComment data={posts} token={token} />
         }
     ]);
 

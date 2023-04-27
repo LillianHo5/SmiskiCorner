@@ -3,16 +3,21 @@ import { useState } from 'react'
 import './Card.css'
 import edit from '../assets/editButton.png'
 import { supabase } from '../client'
-import { Link } from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 
 const Card = (props) => {
+    let navigate = useNavigate();
     const [likeCount, setLikeCount] = useState(props.like_count);
     const [commentCount, setCommentCount] = useState(props.comment_count);
-    const showEditButton = props.token.user.id == props.user_id;
+    const showEditButton = props.token.user.id === props.user_id;
 
     useEffect(() => {
         setLikeCount(props.like_count);
     }, [props.like_count]);
+
+    useEffect(() => {
+        setCommentCount(props.comment_count);
+    }, [props.comment_count]);
 
     const updateLikeCount = async (event) => {
         event.preventDefault();
@@ -26,6 +31,14 @@ const Card = (props) => {
         setLikeCount((likeCount) => likeCount + 1);
     }
 
+    function handleCommentClick() {
+        navigate(`/comments/${props.id}`, {
+            state: {
+                postId: props.id
+            }
+        })
+    }
+
     return (
         <div className="Card">
             <div className="header-container">
@@ -35,7 +48,7 @@ const Card = (props) => {
             <h4 className="author">{"by " + props.author}</h4>
             <p className="description">{props.description}</p>
             <button className="card-button" onClick={updateLikeCount} >Likes: {likeCount}</button>
-            <Link to={`/comments/${props.id}`}><button className="card-button" >Comments: {commentCount}</button></Link>
+            <button className="card-button" onClick={handleCommentClick} >Comments: {commentCount}</button>
         </div>
     );
 };

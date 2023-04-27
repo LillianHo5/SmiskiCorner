@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
-import {Link, useParams} from "react-router-dom";
+import {Link, useNavigate, useParams} from "react-router-dom";
 import {supabase} from "../client.js";
 import "./PostDetail.css"
 
 const PostDetail = () => {
     const params = useParams();
+    let navigate = useNavigate()
     let [post, setPost] = useState(null);
     //const [count, setCount] = useState(post ? post.like_count : null);
     const [likeCount, setLikeCount] = useState(post ? post.like_count : null);
@@ -60,6 +61,13 @@ const PostDetail = () => {
         setLikeCount((likeCount) => likeCount + 1);
     }
 
+    function handleCommentClick() {
+        navigate(`/comments/${params.id}`, {
+            state: {
+                postId: params.id
+            }
+        })
+    }
 
     useEffect(() => {
         const fetchPosts = async () => {
@@ -89,7 +97,7 @@ const PostDetail = () => {
                     <h4 className="detailed-description">{post.description}</h4>
                     <p><strong>Posted: </strong>{formattedDate}</p>
                     <button className="detail-btn" onClick={updateCount}>Likes: {likeCount}</button>
-                    <Link to={`/comments/${post.id}`}><button className="detail-btn" >Comments: {commentCount}</button></Link>
+                    <button className="detail-btn" onClick={handleCommentClick} >Comments: {commentCount}</button>
                 </div>
             ) : null}
         </div>

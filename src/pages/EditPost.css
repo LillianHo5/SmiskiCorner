@@ -8,6 +8,23 @@ input {
     padding-left: 10px;
 }
 
+.submitButton {
+    height: 50px;
+    width: fit-content !important;
+    border-radius: 8px;
+    border: 1px solid transparent;
+    font-size: 20px;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #7C96AB;
+    color:white;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    padding: 0 30px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
 label {
     font-size: 24px;
 }

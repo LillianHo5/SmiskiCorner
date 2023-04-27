@@ -1,0 +1,32 @@
+.Comment {
+    margin: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    padding-right: 40rem;
+    padding-bottom: 1rem;
+}
+
+
+.comment-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.author {
+    font-size: 20px;
+    margin-right: 10px;
+    color: #A4BC92 !important;
+}
+
+.editButton {
+    width: 20px;
+    cursor: pointer;
+}
+
+.comment-description {
+    font-size: 16px;
+    line-height: 1.5;
+    padding: 2rem;
+}

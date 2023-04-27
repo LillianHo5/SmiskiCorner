@@ -49,7 +49,7 @@ const EditPost = ({ data }) => {
                 </textarea>
                 <br />
 
-                <input type="submit" onClick={updatePost} value="Submit" />
+                <input className="submitButton" type="submit" onClick={updatePost} value="Post" />
                 <button className="deleteButton" onClick={deletePost}>Delete</button>
             </form>
         </div>
