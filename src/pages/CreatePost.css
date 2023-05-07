@@ -29,7 +29,7 @@ input[type=submit] {
     font-size: 20px;
     font-weight: 500;
     font-family: inherit;
-    background-color: #1a1a1a;
+    background: #93ab7e;
     color:white;
     cursor: pointer;
     transition: border-color 0.25s;
@@ -40,11 +40,31 @@ input[type=submit]:hover {
     border-color: #646cff;
 }
 
+input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+}
+
 .create-post {
     display: flex;
     flex-direction: column;
-    background: #888888;
+    background: #B3C99C;
     padding: 2rem;
     border-radius: 0.5rem;
     margin-top: 5rem;
+}
+
+.tag-options, .tags-group{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.tag-options {
+    margin: 1rem;
+}
+
+.tag-options label {
+    font-size: 18px !important;
 }
