@@ -9,8 +9,6 @@ const HomeFeed = ({ token, data }) => {
     const [sortedPosts, setSortedPosts] = useState([]);
     const [filteredPosts, setFilteredPosts] = useState([]);
     const [searchInput, setSearchInput] = useState("");
-    const [mostLikedDisabled, setMostLikedDisabled] = useState(false);
-    const [mostRecentDisabled, setMostRecentDisabled] = useState(true);
 
      useEffect(() => {
          setPosts(data);
@@ -21,9 +19,6 @@ const HomeFeed = ({ token, data }) => {
     }
 
     function handleLikedFilter() {
-        if (mostRecentDisabled) {
-            setSortedPosts(posts);
-        }
         let sortedList = [...posts];
         if (sortedPosts.length >  0) {
             sortedList = [...sortedPosts];
@@ -34,17 +29,10 @@ const HomeFeed = ({ token, data }) => {
             })
         }
 
-        // Disable the "Most Liked" button and enable the "Most Recent" button
-        setMostLikedDisabled(true);
-        setMostRecentDisabled(false);
-
         setSortedPosts(sortedList);
     }
 
     function handleRecentFilter() {
-        if (mostLikedDisabled) {
-            setSortedPosts(posts);
-        }
         let sortedList = [...posts];
         if (sortedPosts.length >  0) {
             sortedList = [...sortedPosts];
@@ -54,10 +42,6 @@ const HomeFeed = ({ token, data }) => {
                 return new Date(b.created_at) - new Date(a.created_at);
             })
         }
-
-        // Enable the "Most Liked" button and disable the "Most Recent" button
-        setMostLikedDisabled(false);
-        setMostRecentDisabled(true);
 
         setSortedPosts(sortedList);
     }
@@ -97,8 +81,8 @@ const HomeFeed = ({ token, data }) => {
             </div>
             <div className="Sort">
                 <h3>Sort By:</h3>
-                <button onClick={handleLikedFilter} disabled={mostLikedDisabled}>Most Liked</button>
-                <button onClick={handleRecentFilter} disabled={mostRecentDisabled}>Most Recent</button>
+                <button onClick={handleLikedFilter}>Most Liked</button>
+                <button onClick={handleRecentFilter}>Most Recent</button>
             </div>
             <div className="ReadPosts">
                 {(filteredPosts && filteredPosts.length > 0) ?
