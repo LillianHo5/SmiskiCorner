@@ -28,7 +28,6 @@ const Card = (props) => {
             .select()
             .eq('post_id', props.id)
             .eq('user_id', props.user_id)
-            .limit(1);
 
         if (error) {
             console.error('Error retrieving row:', error);
@@ -48,10 +47,9 @@ const Card = (props) => {
                 .delete()
                 .eq('post_id', props.id)
                 .eq('user_id', props.user_id)
-                .limit(1);
 
             // Update State Variable
-            setLikeCount((prevLikeCount) => prevLikeCount - 1);
+            setLikeCount((likeCount) => likeCount - 1);
             setIsLiked("Like");
         } else {
             // Like doesn't exist, so "like" the post
@@ -63,10 +61,12 @@ const Card = (props) => {
             // Keep track of the like in the "User_Likes" table
             await supabase
                 .from('User_Likes')
-                .insert([{ post_id: props.id, user_id: props.user_id }]);
+                .insert({ post_id: props.id,
+                    user_id: props.user_id })
+                .select()
 
             // Update State Variable
-            setLikeCount((prevLikeCount) => prevLikeCount + 1);
+            setLikeCount((likeCount) => likeCount + 1);
             setIsLiked("Unlike");
         }
     };
