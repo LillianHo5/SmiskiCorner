@@ -8,9 +8,23 @@ const PostDetail = () => {
     let navigate = useNavigate()
     let [post, setPost] = useState(null);
     //const [count, setCount] = useState(post ? post.like_count : null);
+    const [token, setToken] = useState(false);
     const [likeCount, setLikeCount] = useState(post ? post.like_count : null);
+    const [isLiked, setIsLiked] = useState("Like");
     const [commentCount, setCommentCount] = useState(post ? post.comment_count : null);
     const [formattedDate, setFormattedDate] = useState("");
+
+    if(token){
+        sessionStorage.setItem('token',JSON.stringify(token))
+    }
+
+    useEffect(() => {
+        if(sessionStorage.getItem('token')){
+            let data = JSON.parse(sessionStorage.getItem('token'))
+            setToken(data)
+        }
+
+    }, [])
 
     // Time posted calculations (after post is retrieved)
     useEffect(() => {
@@ -49,17 +63,67 @@ const PostDetail = () => {
 
     const updateCount = async (event) => {
         event.preventDefault();
-        // Update in Supabase
-        await supabase
-            .from('Posts')
-            .update({ like_count: likeCount + 1 })
-            .eq('id', post.id)
 
-        // Update State Variables
-        const updatedPost = { ...post, like_count: likeCount + 1 };
-        setPost(updatedPost);
-        setLikeCount((likeCount) => likeCount + 1);
-    }
+        const { data, error } = await supabase
+            .from('User_Likes')
+            .select()
+            .eq('post_id', post.id)
+            .eq('user_id', token.user.id) // current user
+
+        if (error) {
+            console.error('Error retrieving row:', error);
+            return;
+        }
+
+        if (data.length > 0) {
+            // Like exists, so remove the "like" when the button is clicked
+            await supabase
+                .from('Posts')
+                .update({ like_count: likeCount - 1 })
+                .eq('id', post.id);
+
+            // Delete the like from the "User_Likes" table
+            await supabase
+                .from('User_Likes')
+                .delete()
+                .eq('post_id', post.id)
+                .eq('user_id', token.user.id)
+
+            // Update State Variable
+            setLikeCount((likeCount) => likeCount - 1);
+            setIsLiked("Like");
+        } else {
+            // Like doesn't exist, so "like" the post
+            await supabase
+                .from('Posts')
+                .update({ like_count: likeCount + 1 })
+                .eq('id', post.id);
+
+            // Keep track of the like in the "User_Likes" table
+            await supabase
+                .from('User_Likes')
+                .insert({ post_id: post.id,
+                    user_id: token.user.id })
+                .select()
+
+            // Update State Variable
+            setLikeCount((likeCount) => likeCount + 1);
+            setIsLiked("Unlike");
+        }
+    };
+    // const updateCount = async (event) => {
+    //     event.preventDefault();
+    //     // Update in Supabase
+    //     await supabase
+    //         .from('Posts')
+    //         .update({ like_count: likeCount + 1 })
+    //         .eq('id', post.id)
+    //
+    //     // Update State Variables
+    //     const updatedPost = { ...post, like_count: likeCount + 1 };
+    //     setPost(updatedPost);
+    //     setLikeCount((likeCount) => likeCount + 1);
+    // }
 
     function handleCommentClick() {
         navigate(`/comments/${params.id}`, {
@@ -96,8 +160,13 @@ const PostDetail = () => {
                     <h3><strong>Posted by: </strong>{post.author}</h3>
                     <h4 className="detailed-description">{post.description}</h4>
                     <p><strong>Posted: </strong>{formattedDate}</p>
-                    <button className="detail-btn" onClick={updateCount}>Likes: {likeCount}</button>
-                    <button className="detail-btn" onClick={handleCommentClick} >Comments: {commentCount}</button>
+                    <div className="displayCnt">
+                        <div className="displayCnt">
+                            <p className="likeCount">{likeCount}</p>
+                            <button className="detail-btn" onClick={updateCount}>{isLiked}</button>
+                        </div>
+                        <button className="detail-btn" onClick={handleCommentClick} >Comments: {commentCount}</button>
+                    </div>
                 </div>
             ) : null}
         </div>

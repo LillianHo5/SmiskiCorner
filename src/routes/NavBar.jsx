@@ -22,7 +22,7 @@ const NavBar = ({ token }) => {
                     <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/home"><h4>Home</h4></Link>
                     <Link className="links" style={{ color: "rgba(255, 255, 255, 0.87)" }} to="/new"><h4>Create a Post</h4></Link>
                     <Link className="links" style={{color: "rgba(255, 255, 255, 0.87)" }} to="/profile"><h4>Profile</h4></Link>
-                    <button onClick={handleLogout}>Logout</button>
+                    <button className="logout-btn" onClick={handleLogout}>Logout</button>
                 </div>
             </nav>
             <div className="content">

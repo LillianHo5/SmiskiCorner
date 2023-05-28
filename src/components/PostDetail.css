@@ -30,3 +30,16 @@
 .detail-btn:hover {
     border-color: #646cff;
 }
+
+
+.likeCount {
+    color: #93ab7e;
+}
+
+.displayCnt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+

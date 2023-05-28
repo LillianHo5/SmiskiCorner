@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import {useEffect, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import Card from "../components/Card.jsx";
 import "./HomeFeed.css"
@@ -95,7 +95,7 @@ const HomeFeed = ({ token, data }) => {
                                   description={post.description}
                                   like_count={post.like_count}
                                   comment_count={post.comment_count}
-                                  user_id={post.user_id}
+                                  user_id={post.user_id} // user_id of person who created the post
                                   token={token}
                             />
                         </div>

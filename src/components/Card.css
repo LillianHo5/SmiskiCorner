@@ -61,6 +61,10 @@
 }
 
 .card-button:hover {
+    background-color: #93ab7e;
+}
+
+.card-button:hover {
     border-color: #646cff;
 }
 
