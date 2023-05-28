@@ -64,12 +64,24 @@
     border-color: #646cff;
 }
 
+.likeCount {
+    color: #dee6d8;
+}
+
+.displayCnt {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
 .editButton {
     width: 30px;
     float:right;
     text-align: end;
     filter: brightness(100%);
 }
+
 .editButton:hover {
     cursor: pointer;
 }

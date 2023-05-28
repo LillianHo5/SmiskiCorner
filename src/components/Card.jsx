@@ -10,6 +10,7 @@ const Card = (props) => {
     const [likeCount, setLikeCount] = useState(props.like_count);
     const [commentCount, setCommentCount] = useState(props.comment_count);
     const showEditButton = props.token.user.id === props.user_id;
+    const [isLiked, setIsLiked] = useState("Like");
 
     useEffect(() => {
         setLikeCount(props.like_count);
@@ -21,15 +22,55 @@ const Card = (props) => {
 
     const updateLikeCount = async (event) => {
         event.preventDefault();
-        // Update in Supabase
-        await supabase
-            .from('Posts')
-            .update({like_count: likeCount + 1})
-            .eq('id', props.id)
 
-        // Update State Variable
-        setLikeCount((likeCount) => likeCount + 1);
-    }
+        const { data, error } = await supabase
+            .from('User_Likes')
+            .select()
+            .eq('post_id', props.id)
+            .eq('user_id', props.user_id)
+            .limit(1);
+
+        if (error) {
+            console.error('Error retrieving row:', error);
+            return;
+        }
+
+        if (data.length > 0) {
+            // Like exists, so remove the "like" when the button is clicked
+            await supabase
+                .from('Posts')
+                .update({ like_count: likeCount - 1 })
+                .eq('id', props.id);
+
+            // Delete the like from the "User_Likes" table
+            await supabase
+                .from('User_Likes')
+                .delete()
+                .eq('post_id', props.id)
+                .eq('user_id', props.user_id)
+                .limit(1);
+
+            // Update State Variable
+            setLikeCount((prevLikeCount) => prevLikeCount - 1);
+            setIsLiked("Like");
+        } else {
+            // Like doesn't exist, so "like" the post
+            await supabase
+                .from('Posts')
+                .update({ like_count: likeCount + 1 })
+                .eq('id', props.id);
+
+            // Keep track of the like in the "User_Likes" table
+            await supabase
+                .from('User_Likes')
+                .insert([{ post_id: props.id, user_id: props.user_id }]);
+
+            // Update State Variable
+            setLikeCount((prevLikeCount) => prevLikeCount + 1);
+            setIsLiked("Unlike");
+        }
+    };
+
 
     function handleCommentClick() {
         navigate(`/comments/${props.id}`, {
@@ -47,8 +88,13 @@ const Card = (props) => {
             </div>
             <h4 className="author">{"by " + props.author}</h4>
             <p className="description">{props.description}</p>
-            <button className="card-button" onClick={updateLikeCount} >Likes: {likeCount}</button>
-            <button className="card-button" onClick={handleCommentClick} >Comments: {commentCount}</button>
+            <div className="displayCnt">
+                <div className="displayCnt">
+                    <p className="likeCount">{likeCount}
+                    </p><button className="card-button" onClick={updateLikeCount} >{isLiked}</button>
+                </div>
+                <button className="card-button" onClick={handleCommentClick} >Comments: {commentCount}</button>
+            </div>
         </div>
     );
 };
