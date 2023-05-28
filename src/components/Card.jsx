@@ -27,7 +27,7 @@ const Card = (props) => {
             .from('User_Likes')
             .select()
             .eq('post_id', props.id)
-            .eq('user_id', props.user_id)
+            .eq('user_id', props.token.user.id) // current user
 
         if (error) {
             console.error('Error retrieving row:', error);
@@ -46,7 +46,7 @@ const Card = (props) => {
                 .from('User_Likes')
                 .delete()
                 .eq('post_id', props.id)
-                .eq('user_id', props.user_id)
+                .eq('user_id', props.token.user.id)
 
             // Update State Variable
             setLikeCount((likeCount) => likeCount - 1);
@@ -62,7 +62,7 @@ const Card = (props) => {
             await supabase
                 .from('User_Likes')
                 .insert({ post_id: props.id,
-                    user_id: props.user_id })
+                    user_id: props.token.user.id })
                 .select()
 
             // Update State Variable
