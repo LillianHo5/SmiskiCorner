@@ -69,7 +69,7 @@
 }
 
 .likeCount {
-    color: #dee6d8;
+    color: #dee6d8 !important;
 }
 
 .displayCnt {

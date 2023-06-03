@@ -74,7 +74,7 @@ const App = () => {
         },
         {
             path: "/profile",
-            element: <Profile />
+            element: <Profile token={token} data={posts}/>
         },
         {
             path: "/post/:id",
