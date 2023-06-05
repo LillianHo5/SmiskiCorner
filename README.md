@@ -1,3 +1,3 @@
 # SmiskiCorner
 
-A Smiski discussion website :]!
+A Smiski discussion website :] !
