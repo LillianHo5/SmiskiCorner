@@ -36,11 +36,11 @@ const PostDetail = () => {
 
             if (hoursDiff < 1) {
                 const minutesDiff = Math.floor(timeDiff / (1000 * 60));
-                setFormattedDate(minutesDiff + " minutes ago");
+                setFormattedDate(" " + minutesDiff + " minutes ago");
             } else if (hoursDiff < 24) {
-                setFormattedDate(hoursDiff + " hours ago");
+                setFormattedDate(" " + hoursDiff + " hours ago");
             } else { // Over 24 hours since post was made
-                setFormattedDate(
+                setFormattedDate("on " +
                     createdDate.toLocaleDateString("en-US", {
                         month: "2-digit",
                         day: "2-digit",
@@ -157,9 +157,9 @@ const PostDetail = () => {
             {post ? (
                 <div className="post-container">
                     <h1>{post.title}</h1>
-                    <h3><strong>Posted by: </strong>{post.author}</h3>
+                    <h3><strong>Posted by </strong>{post.author}</h3>
                     <h4 className="detailed-description">{post.description}</h4>
-                    <p><strong>Posted: </strong>{formattedDate}</p>
+                    <p><strong>Posted </strong>{formattedDate}</p>
                     <div className="displayCnt">
                         <div className="displayCnt">
                             <p className="likeCount">{likeCount}</p>
