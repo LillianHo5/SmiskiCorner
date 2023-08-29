@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { supabase } from '../client.js'
 import './SignUp.css'
 import {Link} from "react-router-dom";
+import lay from "../assets/smiski-lay.png";
 
 const SignUp = () => {
     const [formData, setFormData] = useState({
@@ -83,11 +84,12 @@ const SignUp = () => {
                     type="password"
                     onChange={handleChange}
                 />
-                <button type='submit'>
+                <button className="signup-submit" type='submit'>
                     Sign Up
                 </button>
             </form>
             Already have an account? <Link to="/">Login</Link>
+            <img className="smiski-lay" src={lay}/>
         </div>
     )
 }
