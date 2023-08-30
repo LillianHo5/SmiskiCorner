@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { supabase } from '../client.js';
 
 const ProfilePage = ({ token, data }) => {
@@ -8,28 +8,30 @@ const ProfilePage = ({ token, data }) => {
         const file = event.target.files[0]; // Get the selected file from the input element
         if (!file) return;
 
-        const filePath = `profile_pictures/${file.name}`;
-
         try {
             // Upload the file to Supabase Storage
-            const { data: uploadData, error } = await supabase.storage
+            const { data: uploadData, error: uploadError } = await supabase.storage
                 .from('Profile-Pics')
-                .upload(filePath, file);
+                .upload(file.name, file);
 
-            if (error) {
-                console.error('Error uploading file:', error);
+            if (uploadError) {
+                console.error('Error uploading file:', uploadError);
                 return;
             }
 
+            console.log('Upload Data:', uploadData);
+
             // Get the URL of the uploaded file
-            const { publicURL, error: urlError } = supabase.storage
+            const { publicURL, error: urlError } = await supabase.storage
                 .from('Profile-Pics')
-                .getPublicUrl(filePath);
+                .getPublicUrl(file.name);
 
             if (urlError) {
                 console.error('Error retrieving file URL:', urlError);
                 return;
             }
+
+            console.log('Public URL:', publicURL);
 
             // Update the imageURL state variable with the public URL of the uploaded file
             setImageURL(publicURL);
@@ -37,6 +39,10 @@ const ProfilePage = ({ token, data }) => {
             console.error('Error:', error);
         }
     }
+
+    useEffect(() => {
+        console.log('Image URL State:', imageURL);
+    }, [imageURL]);
 
     return (
         <div>
